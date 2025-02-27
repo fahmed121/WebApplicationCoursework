@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebAplicationCourseWork.Models;
-
+using WebApplicationCourseWork.Models;
+using WebApplicationCourseWork.Data;
 #nullable disable
 
-namespace WebApplicationCoursework.Migrations
+namespace WebApplicationCourseWork.Migrations
 {
     [DbContext(typeof(FastFoodContext))]
     [Migration("20250225231820_InitialCreate")]

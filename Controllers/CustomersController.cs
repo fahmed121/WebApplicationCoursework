@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebAplicationCourseWork.Models;
-
-namespace WebApplicationCoursework.Controllers
+using WebApplicationCourseWork.Models;
+using WebApplicationCourseWork.Data;
+namespace WebApplicationCourseWork.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

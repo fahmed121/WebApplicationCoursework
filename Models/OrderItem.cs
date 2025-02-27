@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
-namespace WebAplicationCourseWork.Models
+namespace WebApplicationCourseWork.Models
 {
     // class represents the link table in the many to many relationship between Order and item
     public class OrderItem

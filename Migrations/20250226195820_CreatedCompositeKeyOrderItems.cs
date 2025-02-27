@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace WebApplicationCoursework.Migrations
+namespace WebApplicationCourseWork.Migrations
 {
     /// <inheritdoc />
     public partial class CreatedCompositeKeyOrderItems : Migration

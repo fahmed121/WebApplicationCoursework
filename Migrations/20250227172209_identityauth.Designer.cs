@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationCourseWork.Data;
 
@@ -10,9 +11,11 @@ using WebApplicationCourseWork.Data;
 namespace WebApplicationCourseWork.Migrations
 {
     [DbContext(typeof(FastFoodContext))]
-    partial class FastFoodContextModelSnapshot : ModelSnapshot
+    [Migration("20250227172209_identityauth")]
+    partial class identityauth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");

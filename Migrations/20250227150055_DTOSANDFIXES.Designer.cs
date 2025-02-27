@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApplicationCourseWork.Models;
 using WebApplicationCourseWork.Data;
+
 #nullable disable
 
 namespace WebApplicationCourseWork.Migrations
 {
     [DbContext(typeof(FastFoodContext))]
-    [Migration("20250226195820_CreatedCompositeKeyOrderItems")]
-    partial class CreatedCompositeKeyOrderItems
+    [Migration("20250227150055_DTOSANDFIXES")]
+    partial class DTOSANDFIXES
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,7 +20,7 @@ namespace WebApplicationCourseWork.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Customer", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Customer", b =>
                 {
                     b.Property<int>("CustID")
                         .ValueGeneratedOnAdd()
@@ -46,7 +46,7 @@ namespace WebApplicationCourseWork.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Item", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Item", b =>
                 {
                     b.Property<int>("ItemID")
                         .ValueGeneratedOnAdd()
@@ -64,7 +64,7 @@ namespace WebApplicationCourseWork.Migrations
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Order", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Order", b =>
                 {
                     b.Property<int>("OrderID")
                         .ValueGeneratedOnAdd()
@@ -100,7 +100,7 @@ namespace WebApplicationCourseWork.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.OrderItem", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.OrderItem", b =>
                 {
                     b.Property<int>("OrderID")
                         .HasColumnType("INTEGER");
@@ -118,7 +118,7 @@ namespace WebApplicationCourseWork.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Staff", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Staff", b =>
                 {
                     b.Property<int>("StaffID")
                         .ValueGeneratedOnAdd()
@@ -137,15 +137,15 @@ namespace WebApplicationCourseWork.Migrations
                     b.ToTable("Staff");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Order", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Order", b =>
                 {
-                    b.HasOne("WebAplicationCourseWork.Models.Customer", "Customer")
+                    b.HasOne("WebApplicationCourseWork.Models.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerCustID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebAplicationCourseWork.Models.Staff", "Staff")
+                    b.HasOne("WebApplicationCourseWork.Models.Staff", "Staff")
                         .WithMany("Orders")
                         .HasForeignKey("StaffID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -156,15 +156,15 @@ namespace WebApplicationCourseWork.Migrations
                     b.Navigation("Staff");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.OrderItem", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.OrderItem", b =>
                 {
-                    b.HasOne("WebAplicationCourseWork.Models.Item", "Item")
+                    b.HasOne("WebApplicationCourseWork.Models.Item", "Item")
                         .WithMany("Orderitems")
                         .HasForeignKey("ItemID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebAplicationCourseWork.Models.Order", "Order")
+                    b.HasOne("WebApplicationCourseWork.Models.Order", "Order")
                         .WithMany("OrderTtems")
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -175,22 +175,22 @@ namespace WebApplicationCourseWork.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Customer", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Customer", b =>
                 {
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Item", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Item", b =>
                 {
                     b.Navigation("Orderitems");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Order", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Order", b =>
                 {
                     b.Navigation("OrderTtems");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Staff", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Staff", b =>
                 {
                     b.Navigation("Orders");
                 });

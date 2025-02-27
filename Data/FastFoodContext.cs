@@ -1,14 +1,19 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using WebAplicationCourseWork.Models;
+using WebApplicationCourseWork.Models;
 
-namespace WebAplicationCourseWork.Models
+
+
+namespace WebApplicationCourseWork.Data
 {
-    public class FastFoodContext : DbContext
+    public class FastFoodContext : IdentityDbContext<IdentityUser>
     {
         public FastFoodContext (DbContextOptions<FastFoodContext> options) : base(options)
         {}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
              modelBuilder.Entity<OrderItem>()
                 .HasKey(c => new {c.OrderID, c.ItemID}); // Fluent Api to allow for the creation of a composite key
         }

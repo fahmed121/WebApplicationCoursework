@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace WebAplicationCourseWork.Models
+namespace WebApplicationCourseWork.Models
 {
     public class Staff
     {
