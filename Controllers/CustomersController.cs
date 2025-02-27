@@ -11,47 +11,47 @@ namespace WebApplicationCoursework.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderItemsController : ControllerBase
+    public class CustomersController : ControllerBase
     {
         private readonly FastFoodContext _context;
 
-        public OrderItemsController(FastFoodContext context)
+        public CustomersController(FastFoodContext context)
         {
             _context = context;
         }
 
-        // GET: api/OrderItems
+        // GET: api/Customers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<OrderItem>>> GetOrderItems()
+        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
         {
-            return await _context.OrderItems.ToListAsync();
+            return await _context.Customer.ToListAsync();
         }
 
-        // GET: api/OrderItems/5
+        // GET: api/Customers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrderItem>> GetOrderItem(int id)
+        public async Task<ActionResult<Customer>> GetCustomer(int id)
         {
-            var orderItem = await _context.OrderItems.FindAsync(id);
+            var customer = await _context.Customer.FindAsync(id);
 
-            if (orderItem == null)
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            return orderItem;
+            return customer;
         }
 
-        // PUT: api/OrderItems/5
+        // PUT: api/Customers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrderItem(int id, OrderItem orderItem)
+        public async Task<IActionResult> PutCustomer(int id, Customer customer)
         {
-            if (id != orderItem.OrderItemId)
+            if (id != customer.CustID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(orderItem).State = EntityState.Modified;
+            _context.Entry(customer).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace WebApplicationCoursework.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!OrderItemExists(id))
+                if (!CustomerExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace WebApplicationCoursework.Controllers
             return NoContent();
         }
 
-        // POST: api/OrderItems
+        // POST: api/Customers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<OrderItem>> PostOrderItem(OrderItem orderItem)
+        public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
-            _context.OrderItems.Add(orderItem);
+            _context.Customer.Add(customer);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrderItem", new { id = orderItem.OrderItemId }, orderItem);
+            return CreatedAtAction("GetCustomer", new { id = customer.CustID }, customer);
         }
 
-        // DELETE: api/OrderItems/5
+        // DELETE: api/Customers/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrderItem(int id)
+        public async Task<IActionResult> DeleteCustomer(int id)
         {
-            var orderItem = await _context.OrderItems.FindAsync(id);
-            if (orderItem == null)
+            var customer = await _context.Customer.FindAsync(id);
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            _context.OrderItems.Remove(orderItem);
+            _context.Customer.Remove(customer);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool OrderItemExists(int id)
+        private bool CustomerExists(int id)
         {
-            return _context.OrderItems.Any(e => e.OrderItemId == id);
+            return _context.Customer.Any(e => e.CustID == id);
         }
     }
 }

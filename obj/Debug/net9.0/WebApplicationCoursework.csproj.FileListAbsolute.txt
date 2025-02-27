@@ -298,3 +298,15 @@ C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\obj\Debug\net9
 C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\obj\Debug\net9.0\WebApplicationCoursework.pdb
 C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\obj\Debug\net9.0\WebApplicationCoursework.genruntimeconfig.cache
 C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\obj\Debug\net9.0\ref\WebApplicationCoursework.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\Namotion.Reflection.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\NJsonSchema.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\NJsonSchema.Annotations.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\NJsonSchema.NewtonsoftJson.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\NJsonSchema.Yaml.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\NSwag.Annotations.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\NSwag.AspNetCore.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\NSwag.Core.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\NSwag.Core.Yaml.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\NSwag.Generation.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\NSwag.Generation.AspNetCore.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\YamlDotNet.dll
