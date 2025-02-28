@@ -12,7 +12,7 @@ public class EmailService
     public void SendEmail(string toEmail, string subject, string body)
     {
         var message = new MimeMessage();
-        message.From.Add(new MailboxAddress("Support Student App", _emailSettings.SmtpUsername));
+        message.From.Add(new MailboxAddress("Fast Food Delievery App", _emailSettings.SmtpUsername));
         message.To.Add(new MailboxAddress("Reciever Name", toEmail));
         message.Subject = subject;
         var textPart = new TextPart("plain")
