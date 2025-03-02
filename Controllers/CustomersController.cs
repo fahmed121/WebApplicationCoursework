@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplicationCourseWork.Models;
 using WebApplicationCourseWork.Data;
+using AutoMapper;
+using WebApplicationCourseWork.DTO;
 namespace WebApplicationCourseWork.Controllers
 {
     [Route("api/[controller]")]
@@ -15,16 +17,24 @@ namespace WebApplicationCourseWork.Controllers
     {
         private readonly FastFoodContext _context;
 
-        public CustomersController(FastFoodContext context)
+       // public CustomersController(FastFoodContext context)
+        //{
+      //      _context = context;
+       // }
+        private readonly IMapper _mapper;
+
+        public CustomersController(FastFoodContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
-
         // GET: api/Customers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
         {
-            return await _context.Customer.ToListAsync();
+            var customers = await _context.Customer.ToListAsync();
+            var CustomerDtos = _mapper.Map<CustomerDTO>(customers);
+            return Ok(CustomerDtos);
         }
 
         // GET: api/Customers/5
@@ -32,13 +42,13 @@ namespace WebApplicationCourseWork.Controllers
         public async Task<ActionResult<Customer>> GetCustomer(int id)
         {
             var customer = await _context.Customer.FindAsync(id);
-
+           
             if (customer == null)
             {
                 return NotFound();
             }
-
-            return customer;
+             var CustomerDtos = _mapper.Map<CustomerDTO>(customer);
+            return OK (CustomerDtos);
         }
 
         // PUT: api/Customers/5
@@ -75,9 +85,10 @@ namespace WebApplicationCourseWork.Controllers
         // POST: api/Customers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
+        public async Task<ActionResult<Customer>> PostCustomer(CustomerDTO customerdto)
         {
-            _context.Customer.Add(customer);
+            var CustomerDtos = _mapper.Map<Customer>(customerDto);
+            _context.Customer.Add(CustomerDtos);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCustomer", new { id = customer.CustID }, customer);

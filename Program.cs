@@ -12,6 +12,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<FastFoodContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("Connection")));
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
