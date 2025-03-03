@@ -11,9 +11,11 @@ namespace WebApplicationCourseWork.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly FastFoodContext _context;
+        private readonly ILogger<Customer> logger;
 
-        public CustomersController(FastFoodContext context)
+        public CustomersController(FastFoodContext context, ILogger<Customer> logger)
         {
+            this.logger = logger;
             _context = context;
         }
         //private readonly IMapper _mapper;
@@ -27,7 +29,9 @@ namespace WebApplicationCourseWork.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
         {
+            logger.LogInformation("Retrieving all customer Data"):
             var customers = await _context.Customer.ToListAsync();
+
             //var CustomerDtos = _mapper.Map<CustomerDTO>(customers);
             var customerDTOS = customers.Select(c => new CustomerDTO
             {
@@ -45,6 +49,7 @@ namespace WebApplicationCourseWork.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Customer>> GetCustomer(int id)
         {
+            
             var customer = await _context.Customer.FindAsync(id);
 
             if (customer == null)
@@ -68,6 +73,7 @@ namespace WebApplicationCourseWork.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, CustomerDTO customerDTO)
         {
+            logger.LogInformation("Updating Customer Details"):
             if (id != customerDTO.CustID)
             {
                 return BadRequest();
@@ -108,6 +114,7 @@ namespace WebApplicationCourseWork.Controllers
         [HttpPost]
         public async Task<ActionResult<CustomerDTO>> PostCustomer(CustomerDTO customerDTO)
         {
+            logger.LogInformation("Adding new Customer to Database");
             //var CustomerDtos = _mapper.Map<Customer>(customerDto);
             var customer = new Customer
             {
@@ -127,6 +134,7 @@ namespace WebApplicationCourseWork.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCustomer(int id)
         {
+            logger.LogInformation("Removing customer Data"):
             var customer = await _context.Customer.FindAsync(id);
             if (customer == null)
             {
