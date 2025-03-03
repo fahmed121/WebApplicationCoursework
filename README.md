@@ -22,7 +22,7 @@ ASP.NET Core 8
 
 Entity Framework Core (EF Core)
 
-SQL Server
+SQLite
 
 Identity Framework & JWT Authentication
 
