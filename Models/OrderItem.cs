@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 
 namespace WebApplicationCourseWork.Models
 {
@@ -16,5 +17,7 @@ namespace WebApplicationCourseWork.Models
         public Order Order {get; set;}
         [JsonIgnore]
         public Item Item {get; set;}
+        
+        
     }
 }

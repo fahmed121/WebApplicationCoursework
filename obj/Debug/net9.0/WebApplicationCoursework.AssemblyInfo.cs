@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebApplicationCoursework")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dfdbe09a2e9d8aba5a7282627c0bdb5f0eff9a18")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd2a486a09586e572b476ddf96ca0fec088665aa")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebApplicationCoursework")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebApplicationCoursework")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
