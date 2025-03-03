@@ -11,7 +11,7 @@ namespace WebApplicationCourseWork.DTO
         public DateTime OrderDate {get; set;} = DateTime.UtcNow;
         public decimal TotalPrice {get; set;}
         public int CustID {get; set;}   
-
-        public List<OrderItemDTO> OrderItems {get; set;} // using the DTO instead of Entity
+        // [JsonIgnore] // commented out due to circular logic i need an order item to create an order but to create an order item i need an order ID 
+        // public List<OrderItemDTO> OrderItemsDTO {get; set;} 
     }
 }

@@ -10,7 +10,7 @@ namespace WebApplicationCourseWork.Models
 
         public int OrderID {get; set;}
         public int ItemID {get; set;}
-        public int Quantitiy {get; set;}
+        public int Quantity {get; set;}
 
         [JsonIgnore]
         public Order Order {get; set;}

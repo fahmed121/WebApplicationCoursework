@@ -3,6 +3,8 @@ namespace WebApplicationCourseWork.DTO
 {
     public class StaffDTO
     {
-    public string Name {get; set;}
+      public int StaffID {get; set;}
+
+      public string Name {get; set;}
     }
 }

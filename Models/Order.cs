@@ -20,7 +20,7 @@ namespace WebApplicationCourseWork.Models
         public Customer Customer {get; set;}
         
         [JsonIgnore]
-        public List<OrderItem> OrderTtems {get; set;} 
+        public List<OrderItem> OrderItems {get; set;} 
 
     }
 }

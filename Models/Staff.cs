@@ -1,13 +1,14 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace WebApplicationCourseWork.Models
 {
     public class Staff
     {
+    
     public int StaffID {get; set;}
     public string Name {get; set;}
-    public string Email{get; set;}
     
     [JsonIgnore]
     // List of orders to represent the many part of the One to many relation ship between Order and Staff 

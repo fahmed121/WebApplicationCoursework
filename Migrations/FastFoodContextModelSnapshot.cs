@@ -298,7 +298,7 @@ namespace WebApplicationCourseWork.Migrations
                     b.Property<int>("ItemID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Quantitiy")
+                    b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("OrderID", "ItemID");
@@ -313,10 +313,6 @@ namespace WebApplicationCourseWork.Migrations
                     b.Property<int>("StaffID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -406,7 +402,7 @@ namespace WebApplicationCourseWork.Migrations
                         .IsRequired();
 
                     b.HasOne("WebApplicationCourseWork.Models.Order", "Order")
-                        .WithMany("OrderTtems")
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -428,7 +424,7 @@ namespace WebApplicationCourseWork.Migrations
 
             modelBuilder.Entity("WebApplicationCourseWork.Models.Order", b =>
                 {
-                    b.Navigation("OrderTtems");
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("WebApplicationCourseWork.Models.Staff", b =>

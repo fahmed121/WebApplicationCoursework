@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplicationCourseWork.Models;
 using WebApplicationCourseWork.Data;
+using WebApplicationCourseWork.DTO;
+using Microsoft.Identity.Client;
 namespace WebApplicationCourseWork.Controllers
 {
     [Route("api/[controller]")]
@@ -24,7 +26,15 @@ namespace WebApplicationCourseWork.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
-            return await _context.Items.ToListAsync();
+            var items = await _context.Items.ToListAsync();
+            var itemDtos = items.Select(i => new ItemDTO //
+            {
+                ItemName = i.ItemName,
+                Price = i.Price
+
+            }).ToList();
+            return Ok(itemDtos);
+
         }
 
         // GET: api/Items/5
@@ -37,19 +47,30 @@ namespace WebApplicationCourseWork.Controllers
             {
                 return NotFound();
             }
+            var itemDto = new ItemDTO
+            {
+                ItemName = item.ItemName,
+                Price = item.Price
 
-            return item;
+            };
+
+            return Ok(itemDto);
         }
 
         // PUT: api/Items/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutItem(int id, Item item)
+        public async Task<IActionResult> PutItem(int id, ItemDTO itemDTO)
         {
+            var item = await _context.Items.FindAsync(id);
             if (id != item.ItemID)
             {
                 return BadRequest();
             }
+            
+            item.ItemName = itemDTO.ItemName ?? item.ItemName;
+            item.Price = itemDTO.Price;// error here where ?? does not work with decimal
+
 
             _context.Entry(item).State = EntityState.Modified;
 
@@ -75,8 +96,14 @@ namespace WebApplicationCourseWork.Controllers
         // POST: api/Items
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Item>> PostItem(Item item)
+        public async Task<ActionResult<Item>> PostItem(ItemDTO itemdto)
         {
+            var item = new Item
+            {
+                ItemName = itemdto.ItemName,
+                Price = itemdto.Price
+                
+            };
             _context.Items.Add(item);
             await _context.SaveChangesAsync();
 
