@@ -19,6 +19,16 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<FastFoodContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("Connection")));
+builder.Services.AddSwaggerGen(s =>
+{
+    s.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Fast Food Service API",
+        Description = "API for an online fast food delievery service"
+
+    });
+});
 //builder.Services.AddAutoMapper(typeof(Program));
     builder.Services.AddScoped<RolesController>();
 
@@ -68,6 +78,12 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fast Food Service API");
+    c.RoutePrefix = string.Empty;
+});
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

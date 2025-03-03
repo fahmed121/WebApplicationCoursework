@@ -7,12 +7,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplicationCourseWork.Models;
 using Microsoft.AspNetCore.Authorization;
-
+// Roles controller for staff who should be able to have admin privlidges in my context 
 namespace WebApplicationCourseWork.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+   // [Authorize(Roles = "Staff")]
     public class RolesController : ControllerBase
     {
         private readonly RoleManager<IdentityRole> _roleManager;

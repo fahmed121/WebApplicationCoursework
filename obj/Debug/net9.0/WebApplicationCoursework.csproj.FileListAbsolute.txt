@@ -320,3 +320,7 @@ C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9
 C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
 C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\MailKit.dll
 C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\MimeKit.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\xpemz\OneDrive\Documents\GitHub\WebApplicationCoursework\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
