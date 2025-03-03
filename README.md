@@ -43,15 +43,6 @@ Docker (optional, for containerization)
 
 Steps
 
-Clone the Repository
-
-git clone https://github.com/yourusername/fastfood-api.git
-cd fastfood-api
-
-Configure Environment Variables
-
-Copy .env.example to .env
-
 Update database connection string and JWT secret key in appsettings.json
 
 Run Database Migrations
