@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebAplicationCourseWork.Models;
-
-namespace WebApplicationCoursework.Controllers
+using WebApplicationCourseWork.Models;
+using WebApplicationCourseWork.Data;
+using WebApplicationCourseWork.DTO;
+namespace WebApplicationCourseWork.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,9 +18,31 @@ namespace WebApplicationCoursework.Controllers
 
         // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        public async Task<ActionResult<IEnumerable<OrderDTO>>> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
+            var order = await _context.Orders.ToListAsync(); 
+
+            var orderDto = order.Select(o => new OrderDTO
+            {
+                Id = o.OrderID,
+                OrderDetails = o.OrderDetails,
+                OrderStatus = o.OrderStatus,
+                OrderDate  = o.OrderDate,
+                TotalPrice = o.TotalPrice,
+                CustID = o.CustID,
+                
+                
+                // OrderItemsDTO = o.OrderItems.Select(oi => new OrderItemDTO 
+                // {
+                //  OrderID = oi.OrderID,
+                //  ItemID = oi.ItemID,
+                //  Quantity = oi.Quantity
+                    
+                    
+                // }).ToList()
+
+            }).ToList();
+            return Ok(orderDto);
         }
 
         // GET: api/Orders/5
@@ -37,20 +55,35 @@ namespace WebApplicationCoursework.Controllers
             {
                 return NotFound();
             }
+            var orderDto = new OrderDTO
+            {
+                Id = order.OrderID,
+                OrderDetails = order.OrderDetails,
+                OrderStatus = order.OrderStatus,
+                OrderDate  = order.OrderDate,
+                TotalPrice = order.TotalPrice,
+                CustID = order.CustID,
+            };
 
-            return order;
+            return Ok(orderDto);
         }
 
         // PUT: api/Orders/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrder(int id, Order order)
+        public async Task<IActionResult> PutOrder(int id, OrderDTO orderDto)
         {
+            var order = await _context.Orders.FindAsync(id);
             if (id != order.OrderID)
             {
                 return BadRequest();
             }
-
+                order.OrderDetails = orderDto.OrderDetails ?? order.OrderDetails;
+                order.OrderStatus = orderDto.OrderStatus ?? order.OrderStatus;
+                order.OrderDate  = orderDto.OrderDate;
+                order.TotalPrice = orderDto.TotalPrice;
+                
+                
             _context.Entry(order).State = EntityState.Modified;
 
             try
@@ -75,8 +108,15 @@ namespace WebApplicationCoursework.Controllers
         // POST: api/Orders
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<Order>> PostOrder(OrderDTO orderdto)
         {
+            var order = new Order
+            {
+                OrderDetails = orderdto.OrderDetails,
+                OrderStatus = orderdto.OrderStatus,
+                OrderDate = orderdto.OrderDate,
+                TotalPrice = orderdto.TotalPrice
+            };
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 

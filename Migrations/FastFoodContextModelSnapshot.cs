@@ -3,11 +3,11 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebAplicationCourseWork.Models;
+using WebApplicationCourseWork.Data;
 
 #nullable disable
 
-namespace WebApplicationCoursework.Migrations
+namespace WebApplicationCourseWork.Migrations
 {
     [DbContext(typeof(FastFoodContext))]
     partial class FastFoodContextModelSnapshot : ModelSnapshot
@@ -17,7 +17,199 @@ namespace WebApplicationCoursework.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Customer", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Customer", b =>
                 {
                     b.Property<int>("CustID")
                         .ValueGeneratedOnAdd()
@@ -35,15 +227,16 @@ namespace WebApplicationCoursework.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Telphone")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Telephone")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("CustID");
 
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Item", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Item", b =>
                 {
                     b.Property<int>("ItemID")
                         .ValueGeneratedOnAdd()
@@ -53,15 +246,15 @@ namespace WebApplicationCoursework.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("REAL");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ItemID");
 
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Order", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Order", b =>
                 {
                     b.Property<int>("OrderID")
                         .ValueGeneratedOnAdd()
@@ -85,8 +278,8 @@ namespace WebApplicationCoursework.Migrations
                     b.Property<int>("StaffID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("TotalPrice")
-                        .HasColumnType("REAL");
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("OrderID");
 
@@ -97,7 +290,7 @@ namespace WebApplicationCoursework.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.OrderItem", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.OrderItem", b =>
                 {
                     b.Property<int>("OrderID")
                         .HasColumnType("INTEGER");
@@ -105,7 +298,7 @@ namespace WebApplicationCoursework.Migrations
                     b.Property<int>("ItemID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Quantitiy")
+                    b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("OrderID", "ItemID");
@@ -115,15 +308,11 @@ namespace WebApplicationCoursework.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Staff", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Staff", b =>
                 {
                     b.Property<int>("StaffID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -134,15 +323,66 @@ namespace WebApplicationCoursework.Migrations
                     b.ToTable("Staff");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Order", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("WebAplicationCourseWork.Models.Customer", "Customer")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Order", b =>
+                {
+                    b.HasOne("WebApplicationCourseWork.Models.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerCustID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebAplicationCourseWork.Models.Staff", "Staff")
+                    b.HasOne("WebApplicationCourseWork.Models.Staff", "Staff")
                         .WithMany("Orders")
                         .HasForeignKey("StaffID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -153,16 +393,16 @@ namespace WebApplicationCoursework.Migrations
                     b.Navigation("Staff");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.OrderItem", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.OrderItem", b =>
                 {
-                    b.HasOne("WebAplicationCourseWork.Models.Item", "Item")
+                    b.HasOne("WebApplicationCourseWork.Models.Item", "Item")
                         .WithMany("Orderitems")
                         .HasForeignKey("ItemID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebAplicationCourseWork.Models.Order", "Order")
-                        .WithMany("OrderTtems")
+                    b.HasOne("WebApplicationCourseWork.Models.Order", "Order")
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -172,22 +412,22 @@ namespace WebApplicationCoursework.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Customer", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Customer", b =>
                 {
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Item", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Item", b =>
                 {
                     b.Navigation("Orderitems");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Order", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Order", b =>
                 {
-                    b.Navigation("OrderTtems");
+                    b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("WebAplicationCourseWork.Models.Staff", b =>
+            modelBuilder.Entity("WebApplicationCourseWork.Models.Staff", b =>
                 {
                     b.Navigation("Orders");
                 });

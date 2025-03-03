@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebAplicationCourseWork.Models;
-
-namespace WebApplicationCoursework.Controllers
+using WebApplicationCourseWork.Models;
+using WebApplicationCourseWork.Data;
+using System.Xml;
+using WebApplicationCourseWork.DTO;
+namespace WebApplicationCourseWork.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,7 +21,13 @@ namespace WebApplicationCoursework.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Staff>>> GetStaff()
         {
-            return await _context.Staff.ToListAsync();
+            var staff = await _context.Staff.ToListAsync();
+            var staffDto = staff.Select(s => new StaffDTO
+            {
+                StaffID = s.StaffID,
+                Name = s.Name
+            }).ToList();
+            return Ok(staffDto);
         }
 
         // GET: api/Staff/5
@@ -37,19 +40,25 @@ namespace WebApplicationCoursework.Controllers
             {
                 return NotFound();
             }
+            var staffdto = new StaffDTO
+            {
+                Name = staff.Name
+            };
 
-            return staff;
+            return Ok(staffdto);
         }
 
         // PUT: api/Staff/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStaff(int id, Staff staff)
+        public async Task<IActionResult> PutStaff(int id, StaffDTO staffDTO)
         {
+            var staff = await _context.Staff.FindAsync(id);
             if (id != staff.StaffID)
             {
                 return BadRequest();
             }
+            staff.Name = staffDTO.Name ?? staff.Name;
 
             _context.Entry(staff).State = EntityState.Modified;
 
@@ -75,8 +84,13 @@ namespace WebApplicationCoursework.Controllers
         // POST: api/Staff
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Staff>> PostStaff(Staff staff)
+        public async Task<ActionResult<Staff>> PostStaff(StaffDTO staffDTO)
         {
+            var staff = new Staff
+            {
+
+                Name = staffDTO.Name
+            };
             _context.Staff.Add(staff);
             await _context.SaveChangesAsync();
 
