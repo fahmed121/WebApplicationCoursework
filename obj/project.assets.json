@@ -9134,19 +9134,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\xpemz\\.nuget\\packages\\": {}
+    "/Users/farazahmed/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\xpemz\\OneDrive\\Documents\\GitHub\\WebApplicationCoursework\\WebApplicationCoursework.csproj",
+      "projectUniqueName": "/Users/farazahmed/Documents/GitHub/WebApplicationCoursework/WebApplicationCoursework.csproj",
       "projectName": "WebApplicationCoursework",
-      "projectPath": "C:\\Users\\xpemz\\OneDrive\\Documents\\GitHub\\WebApplicationCoursework\\WebApplicationCoursework.csproj",
-      "packagesPath": "C:\\Users\\xpemz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\xpemz\\OneDrive\\Documents\\GitHub\\WebApplicationCoursework\\obj\\",
+      "projectPath": "/Users/farazahmed/Documents/GitHub/WebApplicationCoursework/WebApplicationCoursework.csproj",
+      "packagesPath": "/Users/farazahmed/.nuget/packages/",
+      "outputPath": "/Users/farazahmed/Documents/GitHub/WebApplicationCoursework/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\xpemz\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/farazahmed/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -9252,7 +9252,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

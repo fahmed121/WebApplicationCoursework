@@ -29,7 +29,7 @@ namespace WebApplicationCourseWork.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomer()
         {
-            logger.LogInformation("Retrieving all customer Data"):
+            logger.LogInformation("Retrieving all customer Data");
             var customers = await _context.Customer.ToListAsync();
 
             //var CustomerDtos = _mapper.Map<CustomerDTO>(customers);
@@ -73,7 +73,7 @@ namespace WebApplicationCourseWork.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, CustomerDTO customerDTO)
         {
-            logger.LogInformation("Updating Customer Details"):
+            logger.LogInformation("Updating Customer Details");
             if (id != customerDTO.CustID)
             {
                 return BadRequest();
@@ -134,7 +134,7 @@ namespace WebApplicationCourseWork.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCustomer(int id)
         {
-            logger.LogInformation("Removing customer Data"):
+            logger.LogInformation("Removing customer Data");
             var customer = await _context.Customer.FindAsync(id);
             if (customer == null)
             {
