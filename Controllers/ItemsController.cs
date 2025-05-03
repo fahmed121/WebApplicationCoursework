@@ -11,9 +11,10 @@ namespace WebApplicationCourseWork.Controllers
     public class ItemsController : ControllerBase
     {
         private readonly FastFoodContext _context;
-
-        public ItemsController(FastFoodContext context)
+        private readonly ILogger<Item> logger;
+        public ItemsController(FastFoodContext context, ILogger<Item> logger)
         {
+            this.logger = logger;
             _context = context;
         }
 
@@ -21,6 +22,7 @@ namespace WebApplicationCourseWork.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
+            logger.LogInformation("Showing all Items on the menu..");
             var items = await _context.Items.ToListAsync();
             var itemDtos = items.Select(i => new ItemDTO //
             {
@@ -57,6 +59,7 @@ namespace WebApplicationCourseWork.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutItem(int id, ItemDTO itemDTO)
         {
+            logger.LogInformation("Updating Item");
             var item = await _context.Items.FindAsync(id);
             if (id != item.ItemID)
             {
@@ -109,6 +112,7 @@ namespace WebApplicationCourseWork.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItem(int id)
         {
+            logger.LogInformation("Deleting Item");
             var item = await _context.Items.FindAsync(id);
             if (item == null)
             {
