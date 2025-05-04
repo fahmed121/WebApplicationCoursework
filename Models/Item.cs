@@ -5,11 +5,13 @@ namespace WebApplicationCourseWork.Models
 {
     public class Item
     {
-        
-        public int ItemID {get; set;}
-        public string ItemName {get; set;}
-        public decimal Price {get; set;}
+
+        public int ItemID { get; set; }
+        public string ItemName { get; set; }
+        public string Description { get; set; }
+        public int Quantity { get; set; }
+        public decimal Price { get; set; }
         [JsonIgnore]
-        public List<OrderItem>? Orderitems {get; set;}
+        public List<OrderItem>? Orderitems { get; set; }
     }
 }

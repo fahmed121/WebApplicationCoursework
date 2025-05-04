@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApplicationCourseWork.Authentication;
 
+
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 namespace WebApplicationCourseWork.Controllers
 {
     [Route("api/[controller]")]
@@ -22,11 +24,13 @@ namespace WebApplicationCourseWork.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IConfiguration _configuration;
-        public AccountsController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IConfiguration configuration)
+        private readonly EmailService _emailService;
+        public AccountsController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IConfiguration configuration, EmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
+            _emailService = emailService;
         }
 
 
@@ -40,12 +44,32 @@ namespace WebApplicationCourseWork.Controllers
 
             if (result.Succeeded)
             {
-                return Ok(new { message = "Successful Registration" });
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var verificationLink = Url.Action("VerifyEmail", "Account", new { userId = user.Id, token = token }, Request.Scheme);
+                var emailSubject = "Email Verification";
+                var emailBody = $"Please verify your email by clicking the following link: {verificationLink}";
+                _emailService.SendverificationEmail(user.Email, emailSubject, emailBody);
+                return Ok(new { message = "Verification email sent!" });
 
             }
 
             return BadRequest(result.Errors);
 
+        }
+        [HttpGet("verify-email")]
+        public async Task<IActionResult> VerifyEmail(string userId, string token)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+            {
+                return Ok("Email verification successful.");
+            }
+            return BadRequest("Email verification failed.");
         }
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginModel model)
@@ -95,6 +119,24 @@ namespace WebApplicationCourseWork.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                return Ok("User deleted successfully.");
+            }
+
+            return BadRequest(result.Errors);
+        }
+
 
     }
 

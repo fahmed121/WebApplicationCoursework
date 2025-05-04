@@ -14,8 +14,8 @@ public class EmailService
     public void SendverificationEmail(string RecipientEmail, string subject, string body)
     {
         var message = new MimeMessage();
-        message.From.Add(new MailboxAddress("Fast Food Delievery App", _emailSettings.SmtpUsername));
-        message.To.Add(new MailboxAddress("", RecipientEmail));
+        message.From.Add(new MailboxAddress("SupremeGrill", _emailSettings.SmtpUsername));
+        message.To.Add(new MailboxAddress("To", RecipientEmail));
         message.Subject = subject;
         var textPart = new TextPart("plain")
         {

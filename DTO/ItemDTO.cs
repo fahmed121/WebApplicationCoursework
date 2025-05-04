@@ -3,10 +3,13 @@ namespace WebApplicationCourseWork.DTO
 {
     public class ItemDTO
     {
+
         [Required]
         [StringLength(25)]
-        public string ItemName {get; set;}
+        public string ItemName { get; set; }
+        public string Description { get; set; }
+        public int Quantity { get; set; }
         [Required]
-        public decimal Price {get; set;}
+        public decimal Price { get; set; }
     }
 }

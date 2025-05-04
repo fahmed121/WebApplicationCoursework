@@ -11,9 +11,10 @@ namespace WebApplicationCourseWork.Controllers
     public class ItemsController : ControllerBase
     {
         private readonly FastFoodContext _context;
-
-        public ItemsController(FastFoodContext context)
+        private readonly ILogger<Item> logger;
+        public ItemsController(FastFoodContext context, ILogger<Item> logger)
         {
+            this.logger = logger;
             _context = context;
         }
 
@@ -21,14 +22,17 @@ namespace WebApplicationCourseWork.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
+            logger.LogInformation("Showing all Items on the menu..");
             var items = await _context.Items.ToListAsync();
             var itemDtos = items.Select(i => new ItemDTO //
             {
                 ItemName = i.ItemName,
-                Price = i.Price
+                Description = i.Description,
+                Price = i.Price,
+                Quantity = i.Quantity
 
             }).ToList();
-            return Ok(itemDtos);
+            return Ok(items);
 
         }
 
@@ -45,7 +49,10 @@ namespace WebApplicationCourseWork.Controllers
             var itemDto = new ItemDTO
             {
                 ItemName = item.ItemName,
-                Price = item.Price
+                Description = item.Description,
+                Price = item.Price,
+                Quantity = item.Quantity
+
 
             };
 
@@ -57,14 +64,17 @@ namespace WebApplicationCourseWork.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutItem(int id, ItemDTO itemDTO)
         {
+            logger.LogInformation("Updating Item");
             var item = await _context.Items.FindAsync(id);
             if (id != item.ItemID)
             {
                 return BadRequest();
             }
-            
+
             item.ItemName = itemDTO.ItemName ?? item.ItemName;
             item.Price = itemDTO.Price;// error here where ?? does not work with decimal
+            item.Description = itemDTO.Description;
+            item.Quantity = itemDTO.Quantity;
 
 
             _context.Entry(item).State = EntityState.Modified;
@@ -96,8 +106,10 @@ namespace WebApplicationCourseWork.Controllers
             var item = new Item
             {
                 ItemName = itemdto.ItemName,
-                Price = itemdto.Price
-                
+                Price = itemdto.Price,
+                Description = itemdto.Description,
+                Quantity = itemdto.Quantity
+
             };
             _context.Items.Add(item);
             await _context.SaveChangesAsync();
@@ -109,6 +121,7 @@ namespace WebApplicationCourseWork.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItem(int id)
         {
+            logger.LogInformation("Deleting Item");
             var item = await _context.Items.FindAsync(id);
             if (item == null)
             {

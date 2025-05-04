@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mKNDte/3AQA=",
+  "dgSpecHash": "prE6e1e7yXk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\xpemz\\OneDrive\\Documents\\GitHub\\WebApplicationCoursework\\WebApplicationCoursework.csproj",
+  "projectFilePath": "C:\\Users\\xpemz\\OneDrive\\Documents\\WebDev Frontend\\WebApplicationCoursework\\WebApplicationCoursework.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\xpemz\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\xpemz\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

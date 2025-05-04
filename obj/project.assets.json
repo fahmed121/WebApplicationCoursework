@@ -9139,11 +9139,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\xpemz\\OneDrive\\Documents\\GitHub\\WebApplicationCoursework\\WebApplicationCoursework.csproj",
+      "projectUniqueName": "C:\\Users\\xpemz\\OneDrive\\Documents\\WebDev Frontend\\WebApplicationCoursework\\WebApplicationCoursework.csproj",
       "projectName": "WebApplicationCoursework",
-      "projectPath": "C:\\Users\\xpemz\\OneDrive\\Documents\\GitHub\\WebApplicationCoursework\\WebApplicationCoursework.csproj",
+      "projectPath": "C:\\Users\\xpemz\\OneDrive\\Documents\\WebDev Frontend\\WebApplicationCoursework\\WebApplicationCoursework.csproj",
       "packagesPath": "C:\\Users\\xpemz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\xpemz\\OneDrive\\Documents\\GitHub\\WebApplicationCoursework\\obj\\",
+      "outputPath": "C:\\Users\\xpemz\\OneDrive\\Documents\\WebDev Frontend\\WebApplicationCoursework\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\xpemz\\AppData\\Roaming\\NuGet\\NuGet.Config"
